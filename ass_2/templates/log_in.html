@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log in</title>
+</head>
+<body>
+<h1 align ="center">NSW Crime Data Import and Publication Service</h1>
+<hr />
+</body>
+<script>
+    function check_authority()
+    {
+        const url = 'http://127.0.0.1:5000/log_in';
+        fetch(url,{
+            method: 'POST',
+            body: JSON.stringify({
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value}),
+                headers: {'Content-Type' : 'application/json'}
+        }).then(function(response){
+            console.log((response));
+        });
+    }
+</script>
+<div id ="authority">
+    <h3>Authentication detail</h3>
+    <form method ='POST' action="http://127.0.0.1:5000/log_in" role="form">
+        <table>
+            <tr>
+                <td>username:</td>
+                <td><input type="text" name ='name' id="username"></td>
+            </tr>
+            <tr>
+                <td>password:</td>
+                <td><input type="text" name ='password' id="password"></td>
+            </tr>
+        </table>
+        <button name="log_in" id="log_in" onsubmit="return check_authority();">log in</button>
+    </form>
+</div>
+</html>

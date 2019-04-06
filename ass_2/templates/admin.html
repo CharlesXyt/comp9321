@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Restful Admin</title>
+</head>
+<body>
+<h1 align ="center">NSW Crime Data Import and Publication Service</h1>
+<hr />
+<script>
+    function get_entry_list()
+    {
+        const url ='http://127.0.0.1:5000/client/collection';
+        parent_tag = document.getElementById("list");
+        fetch(myurl)
+            .then((response) = response.json())
+            .then(funtion(data)){
+                let ul = document.createElement('ul');
+                for(var item of data){
+                }
+            }
+    }
+     function import_name()
+    {
+        const url ='http://127.0.0.1:5000/admin/import/lganame';
+        fetch(url,{
+            method: 'POST',
+            body: JSON.stringify({
+                lganame: document.getElementById('import_name').value
+           }),
+          headers: {'Content-Type' : 'application/json'}
+       }).then(function(response){
+            console.log((response));
+       });
+    }
+
+    function import_code()
+    {
+        const url ='http://127.0.0.1:5000/admin/import/postcode';
+        fetch(url,{
+            method: 'POST',
+            body: JSON.stringify({
+                postcode: document.getElementById('import_postcode').value
+           }),
+          headers: {'Content-Type' : 'application/json'}
+       }).then(function(response){
+            console.log((response));
+       });
+    }
+</script>
+
+<div id ="import">
+    <h3>LGA Data Import(i.e.,POST Operation)</h3>
+    <form method ='POST' action="http://127.0.0.1:5000/admin/import" role="form">
+        <table>
+            <tr>
+                <td>lga name:</td>
+                <td><input type="text" name ='lganame' id="lga_username"></td>
+                <td><button name="import_name" id="import_name" onsubmit="return import_name();">Run</button></td>
+            </tr>
+            <tr>
+                <td>postcode:</td>
+                <td><input type="postcode" name ='postcode' id="postcode"></td>
+                <td><button name="import_postcode" id="import_postcode" onsubmit="return import_code();">Run</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id ="collection">
+    <h3>GET the collection(i.e.,GET all data entries)</h3>
+    <form method ='GET' action="http://127.0.0.1:5000/client/collection" role="form">
+        <label><input type="checkbox" name="check" id="check_all">Content Negotiation Option(JSON?)</label>
+        <button name="get_collection" id="get_collection" onclick="get_collection();">Get Collection</button>
+    </form>
+    <div id="list"></div>
+</div>
+
+<div id ="single">
+    <h3>GET a single LGA crime statics data:(i.e.,GET a single entry)</h3>
+    <form method ='GET' action="http://127.0.0.1:5000/client/single" role="form">
+        <table>
+            <tr>
+                <label><input type="text" name="id_entry" id="id_entry">Id of the data entry:</label>
+            </tr>
+        </table>
+        <label><input type="checkbox" name="check" id="check_single">Content Negotiation Option(JSON?)</label>
+        <button name="get_single" id="get_single" onsubmit="return get_single();">Get Collection</button>
+    </form>
+</div>
+</body>
+</html>

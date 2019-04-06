@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Restful Guest</title>
+</head>
+<body>
+<h1 align ="center">NSW Crime Data Import and Publication Service</h1>
+<hr />
+<div id ="collection">
+    <h3>GET the collection(i.e.,GET all data entries)</h3>
+    <form method ='GET' action="http://127.0.0.1:5000/client/collection" role="form">
+        <label><input type="checkbox" name="check" id="check_all">Content Negotiation Option(JSON?)</label>
+        <button name="get_collection" id="get_collection" onclick="get_collection();">Get Collection</button>
+    </form>
+    <div id="list"></div>
+</div>
+
+<div id ="single">
+    <h3>GET a single LGA crime statics data:(i.e.,GET a single entry)</h3>
+    <form method ='GET' action="http://127.0.0.1:5000/client/single" role="form">
+        <table>
+            <tr>
+                <label><input type="text" name="id_entry" id="id_entry">Id of the data entry:</label>
+            </tr>
+        </table>
+        <label><input type="checkbox" name="check" id="check_single">Content Negotiation Option(JSON?)</label>
+        <button name="get_single" id="get_single" onsubmit="return get_single();">Get Collection</button>
+    </form>
+</div>
+</body>
+</html>
